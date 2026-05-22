@@ -3,111 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Caljan Conveyor Logistics Training Prototype</title>
+    <title>Caljan Training Prototype</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     
     <style>
-        body {
-            font-family: 'Open Sans', sans-serif;
-        }
-        h1, h2, h3, .heading-font {
-            font-family: 'Montserrat', sans-serif;
-        }
+        body { font-family: 'Open Sans', sans-serif; }
+        h1, h2, h3, .heading-font { font-family: 'Montserrat', sans-serif; }
     </style>
 </head>
-<body class="bg-black text-white min-h-screen flex flex-col justify-between">
+<body class="bg-white text-black min-h-screen flex flex-col justify-between">
 
-    <div id="gatekeeper" class="fixed inset-0 bg-black flex flex-col items-center justify-center z-50 px-4">
-        <div class="max-w-md w-full border border-zinc-800 p-8 bg-zinc-950 rounded-lg shadow-2xl text-center">
+    <div id="gatekeeper" class="fixed inset-0 bg-zinc-900 flex flex-col items-center justify-center z-50 px-4">
+        <div class="max-w-md w-full border border-zinc-700 p-8 bg-white rounded-lg shadow-2xl text-center text-black">
             <div class="w-16 h-2 bg-[#E63325] mx-auto mb-6"></div>
-            <h1 class="text-2xl font-bold uppercase tracking-wider mb-2">Safety First</h1>
-            <p class="text-sm text-zinc-400 mb-8">Enter the access code to launch the Caljan Conveyor Logistics & Packing Training Prototype.</p>
+            <h1 class="text-2xl font-bold uppercase tracking-wider mb-2">Safety Training</h1>
+            <p class="text-sm text-zinc-600 mb-8">Enter the code to start the Caljan conveyor training prototype.</p>
             
             <div class="mb-4">
-                <input type="password" id="passwordInput" placeholder="Access Password" 
-                       class="w-full px-4 py-3 bg-zinc-900 border border-zinc-700 rounded text-white text-center focus:outline-none focus:border-[#E63325] transition-colors">
+                <input type="password" id="passwordInput" placeholder="Enter Password" 
+                       class="w-full px-4 py-3 bg-zinc-100 border border-zinc-300 rounded text-center focus:outline-none focus:border-[#E63325] transition-colors">
             </div>
             
             <button onclick="checkPassword()" 
                     class="w-full bg-[#E63325] hover:bg-red-700 text-white font-semibold py-3 rounded uppercase tracking-wider transition-colors">
-                Launch Training
+                Start Course
             </button>
             
-            <p id="errorMessage" class="text-sm text-[#E63325] mt-4 hidden">Incorrect password! Please try again.</p>
+            <p id="errorMessage" class="text-sm text-[#E63325] mt-4 hidden">Wrong password! Try again.</p>
         </div>
     </div>
 
     <div id="mainContent" class="hidden flex-grow flex flex-col">
         
-        <header class="border-b border-zinc-800 bg-zinc-950 px-6 py-4 flex justify-between items-center">
+        <header class="border-b border-zinc-200 bg-zinc-50 px-6 py-4 flex justify-between items-center">
             <div class="flex items-center space-x-3">
                 <span class="text-[#E63325] font-bold tracking-widest text-lg heading-font">CALJAN</span>
-                <span class="text-zinc-500">|</span>
-                <span class="text-xs uppercase tracking-wider text-zinc-400">Prototype v1.0</span>
+                <span class="text-zinc-400">|</span>
+                <span id="moduleBadge" class="text-xs uppercase tracking-wider text-zinc-600 font-semibold">Module 1 of 3</span>
             </div>
-            <div class="text-xs bg-zinc-900 px-3 py-1.5 rounded text-zinc-400 border border-zinc-800">
-                Module 1: Lifting Finished Conveyors
+            <div class="text-xs bg-zinc-200 px-3 py-1 rounded text-zinc-700 font-bold" id="stepIndicator">
+                Step 1/3
             </div>
         </header>
 
         <main class="flex-grow grid grid-cols-1 lg:grid-cols-2">
             
-            <div class="bg-zinc-900 p-6 lg:p-12 flex flex-col justify-center border-b lg:border-b-0 lg:border-r border-zinc-800">
+            <div class="bg-zinc-50 p-6 lg:p-12 flex flex-col justify-center border-b lg:border-b-0 lg:border-r border-zinc-200">
                 <div class="max-w-xl mx-auto w-full">
-                    <span class="text-xs font-semibold uppercase tracking-widest text-[#E63325]">Module 1 &bull; Scenario 1</span>
-                    <h2 class="text-3xl font-bold mt-2 mb-6 uppercase tracking-tight">Preparation & Lockout-Tagout</h2>
+                    <span id="scenarioMeta" class="text-xs font-bold uppercase tracking-widest text-[#E63325]">Lifting Process [cite: 31]</span>
+                    <h2 id="scenarioTitle" class="text-3xl font-bold mt-2 mb-6 uppercase tracking-tight">Power Off First [cite: 45]</h2>
                     
-                    <div class="border-l-2 border-[#E63325] bg-black p-4 mb-6 space-y-2">
-                        <p class="text-xs uppercase tracking-wider font-bold text-zinc-400">Identified Safety Risks:</p>
-                        <ul class="text-xs text-zinc-400 list-disc pl-4 space-y-1">
-                            <li>WARNING: CRUSH HAZARD - Mind your hands!</li>
-                            <li>WARNING: MOVING MACHINERY - Risk of trapped hands.</li>
-                            <li>WARNING: HIGH VOLTAGE in the electrical cabinet.</li>
+                    <div id="safetyBox" class="border-l-4 border-[#E63325] bg-white p-4 mb-6 space-y-1 shadow-sm">
+                        <p class="text-xs uppercase tracking-wider font-bold text-red-600">⚠ CRITICAL SAFETY RULES:</p>
+                        <ul id="safetyList" class="text-xs text-zinc-700 list-disc pl-4 space-y-0.5">
+                            <li>CRUSH HAZARD - Watch your hands! [cite: 13]</li>
+                            <li>HIGH VOLTAGE - Deadly electrical risk! [cite: 19]</li>
                         </ul>
                     </div>
 
-                    <p class="text-zinc-300 text-sm leading-relaxed mb-6">
-                        An operator approaches a finished conveyor sitting on the production stand. The assembly and mechanical inspection are complete. The conveyor must now be lifted off using an overhead crane and transferred to the packing area.
+                    <p id="scenarioText" class="text-zinc-700 text-sm leading-relaxed mb-6">
+                        The conveyor is ready on the test stand[cite: 32]. Before we can lift it with the crane, we must make sure it cannot move and there is no live power[cite: 32, 45, 46].
                     </p>
                     
-                    <p class="text-sm font-semibold text-white bg-zinc-950 p-4 border border-zinc-800 rounded">
-                        Challenge: What must the operator do as the absolute first step before attaching any lifting slings or performing mechanical disassembly?
+                    <p id="challengeText" class="text-sm font-bold text-black bg-white p-4 border border-zinc-200 rounded shadow-sm">
+                        What is your first move before touching any tools or lifting gear? [cite: 46]
                     </p>
                 </div>
             </div>
 
-            <div class="bg-black p-6 lg:p-12 flex flex-col justify-center">
-                <div class="max-w-md mx-auto w-full space-y-4" id="quizContainer">
+            <div class="bg-white p-6 lg:p-12 flex flex-col justify-center">
+                <div class="max-w-md mx-auto w-full space-y-4">
                     
-                    <button onclick="selectOption('A')" class="w-full text-left p-4 bg-zinc-950 border border-zinc-800 hover:border-zinc-600 rounded transition-all group">
-                        <div class="flex items-start space-x-3">
-                            <span class="flex-shrink-0 w-6 h-6 rounded-full bg-zinc-900 border border-zinc-700 text-xs flex items-center justify-center font-bold text-zinc-400 group-hover:border-white group-hover:text-white">A</span>
-                            <p class="text-sm text-zinc-300 group-hover:text-white">Immediately position the lifting slings around the conveyor chassis to save time and prepare for the crane operation.</p>
-                        </div>
+                    <button id="optBtnA" onclick="processAnswer('A')" class="w-full text-left p-4 bg-zinc-50 border border-zinc-200 hover:border-zinc-400 rounded transition-all flex items-start space-x-3">
+                        <span class="flex-shrink-0 w-6 h-6 rounded-full bg-zinc-200 text-xs flex items-center justify-center font-bold text-zinc-700">A</span>
+                        <p id="optTextA" class="text-sm text-zinc-800 font-semibold">Hook up the crane slings immediately to save time[cite: 61, 63].</p>
                     </button>
 
-                    <button onclick="selectOption('B')" class="w-full text-left p-4 bg-zinc-950 border border-zinc-800 hover:border-zinc-600 rounded transition-all group">
-                        <div class="flex items-start space-x-3">
-                            <span class="flex-shrink-0 w-6 h-6 rounded-full bg-zinc-900 border border-zinc-700 text-xs flex items-center justify-center font-bold text-zinc-400 group-hover:border-white group-hover:text-white">B</span>
-                            <p class="text-sm text-zinc-300 group-hover:text-white">Make sure the conveyor is completely retracted, turn off the main switch, unplug the main electrical connection, and remove the connection in the electrical cabinet.</p>
-                        </div>
+                    <button id="optBtnB" onclick="processAnswer('B')" class="w-full text-left p-4 bg-zinc-50 border border-zinc-200 hover:border-zinc-400 rounded transition-all flex items-start space-x-3">
+                        <span class="flex-shrink-0 w-6 h-6 rounded-full bg-zinc-200 text-xs flex items-center justify-center font-bold text-zinc-700">B</span>
+                        <p id="optTextB" class="text-sm text-zinc-800 font-semibold">Retract the machine completely, kill the main power switch, and pull the main plugs[cite: 43, 46].</p>
                     </button>
 
-                    <button onclick="selectOption('C')" class="w-full text-left p-4 bg-zinc-950 border border-zinc-800 hover:border-zinc-600 rounded transition-all group">
-                        <div class="flex items-start space-x-3">
-                            <span class="flex-shrink-0 w-6 h-6 rounded-full bg-zinc-900 border border-zinc-700 text-xs flex items-center justify-center font-bold text-zinc-400 group-hover:border-white group-hover:text-white">C</span>
-                            <p class="text-sm text-zinc-300 group-hover:text-white">Begin unbolting the fiksācijas brackets and straps from the production stand while the conveyor is still powered to keep systems ready.</p>
-                        </div>
+                    <button id="optBtnC" onclick="processAnswer('C')" class="w-full text-left p-4 bg-zinc-50 border border-zinc-200 hover:border-zinc-400 rounded transition-all flex items-start space-x-3">
+                        <span class="flex-shrink-0 w-6 h-6 rounded-full bg-zinc-200 text-xs flex items-center justify-center font-bold text-zinc-700">C</span>
+                        <p id="optTextC" class="text-sm text-zinc-800 font-semibold">Start unscrewing the fixing straps and brackets from the stand while it's still powered.</p>
                     </button>
 
-                    <div id="feedbackBlock" class="mt-6 p-5 border hidden rounded">
-                        <h3 id="feedbackTitle" class="text-sm font-bold uppercase tracking-wider mb-2"></h3>
-                        <p id="feedbackText" class="text-sm text-zinc-300 leading-relaxed mb-4"></p>
-                        <button id="nextButton" class="hidden bg-white text-black hover:bg-zinc-200 text-xs font-bold uppercase tracking-widest py-2 px-4 rounded transition-colors">
-                            Continue Scenario
+                    <div id="feedbackBlock" class="mt-6 p-5 border hidden rounded shadow-md">
+                        <h3 id="feedbackTitle" class="text-sm font-bold uppercase tracking-wider mb-1"></h3>
+                        <p id="feedbackText" class="text-sm leading-relaxed mb-4"></p>
+                        <button id="nextButton" onclick="loadNextStep()" class="bg-black text-white hover:bg-zinc-800 text-xs font-bold uppercase tracking-widest py-2.5 px-5 rounded transition-colors shadow-sm">
+                            Next Step &rarr;
                         </button>
                     </div>
 
@@ -116,66 +105,171 @@
 
         </main>
 
-        <footer class="border-t border-zinc-800 bg-zinc-950 px-6 py-3 flex justify-between items-center text-xs text-zinc-500">
-            <div>Developed for Caljan Manufacturing & Safety Teams</div>
-            <div>SBL Methodology Prototype</div>
+        <footer class="border-t border-zinc-200 bg-zinc-50 px-6 py-3 flex justify-between items-center text-xs text-zinc-400 font-semibold">
+            <div>Caljan Factory Floor Simulation</div>
+            <div>Short & Direct Text Mode</div>
         </footer>
 
     </div>
 
     <script>
-        // 1. Password Verification
-        function checkPassword() {
-            const input = document.getElementById('passwordInput').value;
-            const gatekeeper = document.getElementById('gatekeeper');
-            const mainContent = document.getElementById('mainContent');
-            const errorMsg = document.getElementById('errorMessage');
-            
-            // Defined password: h55m2kmv
-            if (input === 'h55m2kmv') {
-                gatekeeper.classList.add('hidden');
-                mainContent.classList.remove('hidden');
-            } else {
-                errorMsg.classList.remove('hidden');
-            }
-        }
+        // Track where the user is
+        let currentStep = 1;
 
-        // 2. Scenario Feedback Logic
-        function selectOption(option) {
-            const feedbackBlock = document.getElementById('feedbackBlock');
-            const feedbackTitle = document.getElementById('feedbackTitle');
-            const feedbackText = document.getElementById('feedbackText');
-            const nextButton = document.getElementById('nextButton');
-            
-            feedbackBlock.classList.remove('hidden');
-            
-            if (option === 'B') {
-                // Correct Answer (Matches Caljan Lifting SOP Steps 1 & 2)
-                feedbackBlock.className = "mt-6 p-5 border border-zinc-700 bg-zinc-950 rounded";
-                feedbackTitle.innerText = "✓ CORRECT! SAFETY SECURED";
-                feedbackTitle.className = "text-sm font-bold uppercase tracking-wider mb-2 text-white";
-                feedbackText.innerText = "Excellent. According to the SOP, you must verify that the conveyor is completely retracted and electricity is fully isolated (main switch off, main connection unplugged, and internal cabinet connection removed). This eliminates high-voltage hazards and mechanical risks during rigging. Ready for the next step.";
-                nextButton.classList.remove('hidden');
-            } else {
-                // Incorrect Answers (Hazard Scenarios)
-                feedbackBlock.className = "mt-6 p-5 border border-[#E63325] bg-zinc-950 rounded";
-                feedbackTitle.innerText = "⚠ HAZARD DETECTED / INCORRECT";
-                feedbackTitle.className = "text-sm font-bold uppercase tracking-wider mb-2 text-[#E63325]";
-                nextButton.classList.add('hidden');
-                
-                if (option === 'A') {
-                    feedbackText.innerText = "Critical Error! Attempting to sling the unit before verifying it is retracted or isolated exposes you to high-voltage and unexpected machine movement risks. Rigging unisolated live equipment is a major safety violation. Try again!";
-                } else if (option === 'C') {
-                    feedbackText.innerText = "Critical Error! Never remove stabilizing straps or brackets while the conveyor is still live. The unisolated unit could accidentally shift, collapse, or activate, causing severe injury. Re-evaluate your sequence!";
+        // Data structure containing the simplified text blocks
+        const courseData = {
+            1: {
+                module: "Module 1: Lifting Finished Conveyors",
+                meta: "Lifting Process [cite: 31]",
+                title: "Power Off First [cite: 45]",
+                rules: ["CRUSH HAZARD - Watch your hands! [cite: 13]", "HIGH VOLTAGE - Deadly electrical risk! [cite: 19]"],
+                scenario: "The conveyor assembly is done[cite: 32]. Before we can lift it off the stand with the overhead crane, we must guarantee it cannot move or shock anyone[cite: 32, 45, 46].",
+                challenge: "What is your first move before touching any tools or lifting gear? [cite: 46]",
+                correct: "B",
+                options: {
+                    A: "Hook up the crane slings immediately to save time[cite: 61, 63].",
+                    B: "Retract the machine completely, kill the main power switch, and pull the main plugs[cite: 43, 46].",
+                    C: "Start unscrewing the fixing straps and brackets from the stand while it's still powered."
+                },
+                feedback: {
+                    B: "CORRECT! You killed the power and retracted the machine[cite: 43, 46]. No electrical risks[cite: 46]. It is now safe to handle tools.",
+                    A: "DANGEROUS! If the power is live, the conveyor can move unexpectedly[cite: 14, 46]. Never attach crane slings to a live machine[cite: 46, 63]. Try again.",
+                    C: "DANGEROUS! Removing brackets from a live, powered conveyor can trap your hands instantly[cite: 14, 53]. Turn off the power first[cite: 46]! Try again."
+                }
+            },
+            2: {
+                module: "Module 2: Packing Finished Conveyors",
+                meta: "Packing Process [cite: 120]",
+                title: "Gas Torch Safety [cite: 121]",
+                rules: ["FLAMMABLE - Open flame in use! [cite: 101]", "THERMAL RISK - High heat! [cite: 122]", "FORKLIFTS - Moving warehouse traffic! [cite: 102]"],
+                scenario: "The conveyor is safely placed on the transport trolley[cite: 128]. You are going to use the film melting gas torch to heat-wrap the chassis[cite: 121].",
+                challenge: "What protective gear do you wear, and where do you place the gas cylinder? [cite: 122, 123]",
+                correct: "A",
+                options: {
+                    A: "Wear heavy thermal gloves + safety glasses, and keep the gas cylinder at least 5 meters away from the flame[cite: 122, 123, 188].",
+                    B: "Regular thin plastic gloves are fine, and keep the gas tank right next to you so the hose doesn't stretch.",
+                    C: "No glasses needed, just wear ear protection and keep the gas cylinder behind the trolley out of sight."
+                },
+                feedback: {
+                    A: "CORRECT! Thermal gloves protect your hands from burning [cite: 122], safety glasses protect your eyes [cite: 188], and keeping the gas tank 5 meters away avoids explosions[cite: 123].",
+                    B: "DANGEROUS! Thin gloves will melt onto your skin from the heat[cite: 122]. Keeping a gas tank right next to an open flame is a major fire hazard[cite: 123]. Try again.",
+                    C: "WRONG! Safety glasses are mandatory to guard your eyes against sparks and spray[cite: 188]. The tank must be 5 meters away[cite: 123]. Try again."
+                }
+            },
+            3: {
+                module: "Module 3: Final Cross-Check",
+                meta: "Quality Assurance",
+                title: "The Handover Audit",
+                rules: ["CRANE SAFETY - Heavy load above! [cite: 68]", "SHIPPING INFO - Correct metadata required [cite: 167]"],
+                scenario: "The crane operator has just moved a newly lifted conveyor onto your packing trolley[cite: 78]. He wants to disconnect his crane and leave[cite: 83].",
+                challenge: "What must you check on the conveyor body before you let the crane operator drive away? [cite: 83, 84]",
+                correct: "C",
+                options: {
+                    A: "Nothing. He knows his job, just start wrapping the plastic film over it.",
+                    B: "Check if the bottom covers are shiny enough and see if there is any dust on the electronics.",
+                    C: "Stop him! Verify the red Crosshair 'Center of Gravity' sticker is glued onto both sides directly under the crane hook[cite: 84]."
+                },
+                feedback: {
+                    C: "CORRECT! The 'Center of Gravity' sticker MUST be attached before the crane hook is unhooked[cite: 83, 84]. If missing, the final client won't know how to unload it safely[cite: 140].",
+                    A: "CRITICAL FAILURE! If you wrap it without the sticker, the client receives an unmarked 5000kg load[cite: 172]. When they lift it, it could tip over and crash[cite: 70]. Try again.",
+                    B: "WRONG! Dust doesn't matter right now. The red Center of Gravity sticker is a vital life-safety marker[cite: 84]. Look closer and try again."
                 }
             }
+        };
+
+        // Screen protection logic
+        function checkPassword() {
+            const input = document.getElementById('passwordInput').value;
+            if (input === 'h55m2kmv') {
+                document.getElementById('gatekeeper').classList.add('hidden');
+                document.getElementById('mainContent').classList.remove('hidden');
+                renderCurrentStep();
+            } else {
+                document.getElementById('errorMessage').classList.remove('hidden');
+            }
         }
 
-        // Allow password submission on Enter key
-        document.getElementById('passwordInput').addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') {
-                checkPassword();
+        // Display current step details on screen
+        function renderCurrentStep() {
+            const data = courseData[currentStep];
+            
+            // Header elements
+            document.getElementById('moduleBadge').innerText = `Module ${currentStep} of 3`;
+            document.getElementById('stepIndicator').innerText = `Step ${currentStep}/3`;
+            
+            // Text panels
+            document.getElementById('scenarioMeta').innerText = data.meta;
+            document.getElementById('scenarioTitle').innerText = data.title;
+            document.getElementById('scenarioText').innerText = data.scenario;
+            document.getElementById('challengeText').innerText = data.challenge;
+            
+            // Rebuild rules list
+            const listContainer = document.getElementById('safetyList');
+            listContainer.innerHTML = "";
+            data.rules.forEach(rule => {
+                const li = document.createElement('li');
+                li.innerText = rule;
+                listContainer.appendChild(li);
+            });
+            
+            // Set choice button labels
+            document.getElementById('optTextA').innerText = data.options.A;
+            document.getElementById('optTextB').innerText = data.options.B;
+            document.getElementById('optTextC').innerText = data.options.C;
+            
+            // Clean up state from previous questions
+            document.getElementById('feedbackBlock').classList.add('hidden');
+            document.getElementById('nextButton').classList.add('hidden');
+        }
+
+        // Process answer selections
+        function processAnswer(selected) {
+            const data = courseData[currentStep];
+            const fBlock = document.getElementById('feedbackBlock');
+            const fTitle = document.getElementById('feedbackTitle');
+            const fText = document.getElementById('feedbackText');
+            const nextBtn = document.getElementById('nextButton');
+            
+            fBlock.classList.remove('hidden');
+            
+            if (selected === data.correct) {
+                // Correct Choice Style (Green accent)
+                fBlock.className = "mt-6 p-5 border-2 border-emerald-600 bg-emerald-50 text-emerald-950 rounded";
+                fTitle.innerText = "✓ Excellent Work";
+                fTitle.className = "text-sm font-bold uppercase tracking-wider mb-1 text-emerald-800";
+                fText.innerText = data.feedback[selected];
+                nextBtn.classList.remove('hidden');
+            } else {
+                // Mistake Style (Red accent)
+                fBlock.className = "mt-6 p-5 border-2 border-[#E63325] bg-red-50 text-red-950 rounded";
+                fTitle.innerText = "⚠ Safety Threat";
+                fTitle.className = "text-sm font-bold uppercase tracking-wider mb-1 text-red-700";
+                fText.innerText = data.feedback[selected];
+                nextBtn.classList.add('hidden');
             }
+        }
+
+        // Slide engine forward
+        function loadNextStep() {
+            if (currentStep < 3) {
+                currentStep++;
+                renderCurrentStep();
+            } else {
+                // Final success screen reached
+                document.getElementById('quizContainer').innerHTML = `
+                    <div class="text-center p-8 bg-zinc-50 border border-zinc-200 rounded-lg shadow-sm">
+                        <div class="w-12 h-12 bg-emerald-600 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-4">✓</div>
+                        <h2 class="text-xl font-bold uppercase mb-2">Simulation Complete!</h2>
+                        <p class="text-sm text-zinc-600 mb-4">Alex successfully linked lifting and packing rules together safely.</p>
+                        <button onclick="window.location.reload()" class="bg-[#E63325] hover:bg-red-700 text-white text-xs font-bold uppercase tracking-widest py-2 px-4 rounded transition-colors">Restart</button>
+                    </div>
+                `;
+            }
+        }
+
+        // Let users press Enter on the password window
+        document.getElementById('passwordInput').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') checkPassword();
         });
     </script>
 </body>
