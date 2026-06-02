@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vēsma Dūmkalna — CV</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Montserrat:wght@400;500;600&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#1F3F30;--green2:#4C5550;--silver:#A7AFBA;--depth:#2F353E;--ink:#0B0C0E;--bg:#F6F7F9;
+    --serif:'Playfair Display',Georgia,serif;--sans:'Montserrat',system-ui,sans-serif;--body:'Lora',Georgia,serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:#5c6360;font-family:var(--body);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;padding:30px 16px 80px;}
+  body.lang-lv [data-lang="en"]{display:none !important;}
+  body.lang-en [data-lang="lv"]{display:none !important;}
+
+  /* toolbar */
+  .toolbar{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px clamp(16px,4vw,40px);background:rgba(11,12,14,.92);backdrop-filter:blur(10px);color:var(--bg);}
+  .toolbar .tb-left{display:flex;align-items:center;gap:14px;font-family:var(--sans);font-size:12px;letter-spacing:1.5px;text-transform:uppercase;}
+  .toolbar a.back{color:var(--silver);text-decoration:none;display:inline-flex;align-items:center;gap:7px;transition:color .3s;}
+  .toolbar a.back:hover{color:var(--bg);}
+  .tb-right{display:flex;align-items:center;gap:12px;}
+  .lang-toggle{display:flex;border:1px solid rgba(167,175,186,.5);border-radius:999px;overflow:hidden;}
+  .lang-toggle button{background:transparent;border:0;color:var(--bg);cursor:pointer;padding:6px 13px;font-family:var(--sans);font-size:11px;letter-spacing:1px;font-weight:600;opacity:.55;transition:.3s;}
+  body.lang-lv .lang-toggle button[data-set="lv"],body.lang-en .lang-toggle button[data-set="en"]{background:var(--bg);color:var(--ink);opacity:1;}
+  .print-btn{display:inline-flex;align-items:center;gap:9px;background:var(--bg);color:var(--ink);border:0;cursor:pointer;font-family:var(--sans);font-size:12px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;padding:10px 20px;border-radius:2px;transition:background .3s,transform .3s;}
+  .print-btn:hover{background:var(--silver);transform:translateY(-1px);}
+
+  /* A4 sheet */
+  .sheet{width:210mm;min-height:297mm;margin:64px auto 0;background:#fff;box-shadow:0 30px 80px -30px rgba(0,0,0,.6);display:grid;grid-template-columns:64mm 1fr;}
+  /* sidebar */
+  .side{background:var(--green);color:var(--bg);padding:16mm 11mm;}
+  .side .portrait{width:100%;aspect-ratio:1024/1536;object-fit:cover;object-position:center top;border:1px solid rgba(167,175,186,.4);margin-bottom:11mm;display:block;filter:saturate(.9) contrast(1.02);}
+  .side h2{font-family:var(--sans);font-size:9.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--silver);margin:0 0 7mm;padding-bottom:2.5mm;border-bottom:1px solid rgba(167,175,186,.35);}
+  .side-block{margin-bottom:10mm;}
+  .ci{display:flex;gap:8px;margin-bottom:4mm;align-items:flex-start;}
+  .ci svg{width:13px;height:13px;stroke:var(--silver);fill:none;stroke-width:1.5;flex-shrink:0;margin-top:2px;}
+  .ci span{font-family:var(--body);font-size:10.5px;color:rgba(246,247,249,.92);word-break:break-word;line-height:1.4;}
+  .skill-list{list-style:none;}
+  .skill-list li{font-family:var(--body);font-size:10.5px;color:rgba(246,247,249,.92);padding:2.2mm 0;border-bottom:1px solid rgba(167,175,186,.18);}
+  .chip-wrap{display:flex;flex-wrap:wrap;gap:5px;}
+  .chip-wrap span{font-family:var(--sans);font-size:8.5px;letter-spacing:.3px;color:var(--bg);border:1px solid rgba(167,175,186,.4);padding:3px 7px;border-radius:2px;}
+
+  /* main */
+  .main{padding:16mm 14mm;}
+  .name{font-family:var(--serif);font-size:30px;font-weight:600;line-height:1.05;color:var(--ink);}
+  .name em{font-style:italic;color:var(--green);}
+  .role{font-family:var(--sans);font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--green2);margin-top:3mm;}
+  .summary{font-family:var(--body);font-size:11px;color:#2a2d31;margin-top:5mm;line-height:1.55;max-width:60ch;}
+  .sect{margin-top:9mm;}
+  .sect-h{font-family:var(--sans);font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--green);font-weight:600;padding-bottom:2mm;border-bottom:1.5px solid var(--green);margin-bottom:5mm;display:flex;align-items:center;gap:8px;}
+  .job{margin-bottom:6mm;break-inside:avoid;}
+  .job-top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;}
+  .job-title{flex:1;display:block;font-family:var(--serif);font-size:14px;font-weight:600;color:var(--ink);line-height:1.25;}
+  .job-period{font-family:var(--sans);font-size:9.5px;letter-spacing:.5px;color:var(--green2);font-weight:600;white-space:nowrap;padding-top:3px;}
+  .job-org{font-family:var(--sans);font-size:10px;color:var(--green);margin-top:2mm;font-weight:500;display:block;}
+  .job-desc{font-family:var(--body);font-size:10.5px;color:#33363b;margin-top:2.5mm;line-height:1.5;}
+  .edu-row{display:flex;justify-content:space-between;gap:10px;margin-bottom:4mm;break-inside:avoid;}
+  .edu-row .e-main{font-family:var(--serif);font-size:12px;font-weight:500;color:var(--ink);}
+  .edu-row .e-org{font-family:var(--sans);font-size:9.5px;color:var(--green2);margin-top:1mm;}
+  .edu-row .e-year{font-family:var(--sans);font-size:9.5px;color:var(--green2);font-weight:600;white-space:nowrap;}
+  .cols2{column-count:2;column-gap:8mm;}
+  .cert-line{break-inside:avoid;margin-bottom:3mm;}
+  .cert-line .cl-t{font-family:var(--body);font-size:10px;color:var(--ink);line-height:1.35;}
+  .cert-line .cl-m{font-family:var(--sans);font-size:8.5px;color:var(--green2);}
+
+  @media (max-width:780px){
+    .sheet{width:100%;grid-template-columns:1fr;}
+    .cols2{column-count:1;}
+  }
+  @page{size:A4;margin:0;}
+  @media print{
+    body{background:#fff;padding:0;}
+    .toolbar{display:none;}
+    .sheet{width:210mm;margin:0;box-shadow:none;}
+  }
+</style>
+</head>
+<body class="lang-lv">
+
+  <div class="toolbar">
+    <div class="tb-left">
+      <a class="back" href="index.html"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M15 18l-6-6 6-6"/></svg><span data-lang="lv">Atpakaļ</span><span data-lang="en">Back</span></a>
+    </div>
+    <div class="tb-right">
+      <div class="lang-toggle">
+        <button data-set="lv">LV</button><button data-set="en">EN</button>
+      </div>
+      <button class="print-btn" onclick="window.print()">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 9V3h12v6M6 18H4a2 2 0 01-2-2v-4a2 2 0 012-2h16a2 2 0 012 2v4a2 2 0 01-2 2h-2M6 14h12v7H6z"/></svg>
+        <span data-lang="lv">Saglabāt PDF</span><span data-lang="en">Save as PDF</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="sheet">
+    <!-- SIDEBAR -->
+    <aside class="side">
+      <img class="portrait" src="assets/portrait-duotone.jpg" alt="Vēsma Dūmkalna">
+
+      <div class="side-block">
+        <h2><span data-lang="lv">Kontakti</span><span data-lang="en">Contact</span></h2>
+        <div class="ci"><svg viewBox="0 0 24 24"><path d="M3 6h18v12H3z"/><path d="M3 7l9 6 9-6"/></svg><span>vesma.d@gmail.com</span></div>
+        <div class="ci"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 10v7M8 7v.01M12 17v-4a2 2 0 014 0v4"/></svg><span>in/vesmadumkalna</span></div>
+        <div class="ci"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.3 7-11a7 7 0 10-14 0c0 4.7 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span data-lang="lv">Latvija</span><span data-lang="en">Latvia</span></div>
+      </div>
+
+      <div class="side-block">
+        <h2><span data-lang="lv">Kompetences</span><span data-lang="en">Core skills</span></h2>
+        <ul class="skill-list">
+          <li><span data-lang="lv">Mācību dizains &amp; e-mācības</span><span data-lang="en">Instructional design &amp; e-learning</span></li>
+          <li><span data-lang="lv">LMS ieviešana (Moodle)</span><span data-lang="en">LMS implementation (Moodle)</span></li>
+          <li><span data-lang="lv">Mācību projektu vadība</span><span data-lang="en">Training project management</span></li>
+          <li><span data-lang="lv">Satura lokalizācija</span><span data-lang="en">Content localization</span></li>
+          <li><span data-lang="lv">Kompetenču ietvari</span><span data-lang="en">Competency frameworks</span></li>
+          <li><span data-lang="lv">Snieguma vadība</span><span data-lang="en">Performance management</span></li>
+        </ul>
+      </div>
+
+      <div class="side-block">
+        <h2><span data-lang="lv">MI &amp; rīki</span><span data-lang="en">AI &amp; tools</span></h2>
+        <div class="chip-wrap">
+          <span>Moodle</span><span>TalentLMS</span><span>H5P</span><span>Claude</span><span>Gemini</span><span>NotebookLM</span><span>Perplexity</span><span>Gamma</span><span>Canva</span><span>Adobe Express</span><span>Suno</span>
+        </div>
+      </div>
+
+      <div class="side-block" style="margin-bottom:0;">
+        <h2><span data-lang="lv">Valodas</span><span data-lang="en">Languages</span></h2>
+        <ul class="skill-list">
+          <li><span data-lang="lv">Latviešu — dzimtā</span><span data-lang="en">Latvian — native</span></li>
+          <li><span data-lang="lv">Angļu — brīvi</span><span data-lang="en">English — fluent</span></li>
+          <li><span data-lang="lv">Krievu — labi</span><span data-lang="en">Russian — proficient</span></li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+      <div class="name">Vēsma <em>Dūmkalna</em></div>
+      <div class="role"><span data-lang="lv">Mācību dizaina &amp; L&amp;D eksperte</span><span data-lang="en">Instructional Design &amp; L&amp;D Expert</span></div>
+      <p class="summary">
+        <span data-lang="lv">Pedagoģijā sakņota mācību dizainere ar vairāk nekā astoņu gadu pieredzi L&amp;D jomā mazumtirdzniecībā, telekomunikācijās un degvielas tirdzniecībā. Veidoju e-mācību ekosistēmas no nulles, pārvēršot sarežģītas zināšanas skaidrā, uz cilvēku vērstā un izmērāmā mācīšanās pieredzē.</span>
+        <span data-lang="en">A pedagogy-rooted instructional designer with 8+ years in L&amp;D across retail, telecom and fuel retail. I build e-learning ecosystems from the ground up, turning complex knowledge into clear, human-centred and measurable learning experiences.</span>
+      </p>
+
+      <div class="sect">
+        <div class="sect-h"><span data-lang="lv">Darba pieredze</span><span data-lang="en">Work experience</span></div>
+
+        <div class="job">
+          <div class="job-top">
+            <span class="job-title"><span data-lang="lv">E-mācību dizaina eksperte</span><span data-lang="en">E-learning Instructional Design Expert</span></span>
+            <span class="job-period">2025 — <span data-lang="lv">Tagad</span><span data-lang="en">Present</span></span>
+          </div>
+          <div class="job-org">Latvijas Universitāte</div>
+          <p class="job-desc"><span data-lang="lv">Veidoju visaptverošus mācību kursus, pārvēršot sarežģītu tehnisku saturu — piem., runas datu apstrādi un programmēšanas valodu Python — intuitīvos, uz studentu vērstos moduļos. Sadarbībā ar nozares ekspertiem pārvēršu akadēmisku saturu pieejamos, interaktīvos digitālos formātos.</span><span data-lang="en">I architect comprehensive learning courses, turning complex technical content — e.g. Speech Data Processing and the Python language — into intuitive, learner-centric modules, translating academic content into accessible, interactive digital formats.</span></p>
+        </div>
+
+        <div class="job">
+          <div class="job-top">
+            <span class="job-title"><span data-lang="lv">Mācību un attīstības (L&amp;D) speciāliste</span><span data-lang="en">Learning &amp; Development Specialist</span></span>
+            <span class="job-period"><span data-lang="lv">2025. jūn. — 2026. marts</span><span data-lang="en">Jun 2025 — Mar 2026</span></span>
+          </div>
+          <div class="job-org">SIA STENDERS</div>
+          <p class="job-desc"><span data-lang="lv">Vadīju daudzvalodu e-mācību platformas pilnu dzīves ciklu: izstrādāju saturu angļu valodā un koordinēju lokalizāciju LV, LT un DE tirgiem. Izveidoju kompetenču ietvaru ar darbības rādītājiem un sadarbībā ar Vācijas nodaļu ieviesu LMS.</span><span data-lang="en">I managed the full lifecycle of a multi-language e-learning platform — developing content in English and coordinating localization for the LV, LT and DE markets — built a competency framework with metrics and implemented the LMS with the German division.</span></p>
+        </div>
+
+        <div class="job">
+          <div class="job-top">
+            <span class="job-title"><span data-lang="lv">Personāla attīstības &amp; mācību vadītāja</span><span data-lang="en">People Development &amp; Training Manager</span></span>
+            <span class="job-period">2023 — 2025</span>
+          </div>
+          <div class="job-org">A/S VIRŠI-A</div>
+          <p class="job-desc"><span data-lang="lv">Izstrādāju un ieviesu mācību programmas visā organizācijā ar fokusu uz klientu servisu un pārdošanu. Pilnveidoju snieguma vadības procesu un atbildēju par mācību budžetu un rezultātu analīzi.</span><span data-lang="en">I designed and rolled out organisation-wide training focused on customer service and sales, improved the performance-management process, and owned the training budget and results analysis.</span></p>
+        </div>
+
+        <div class="job">
+          <div class="job-top">
+            <span class="job-title"><span data-lang="lv">Mācību projektu vadītāja</span><span data-lang="en">Learning Project Manager</span></span>
+            <span class="job-period">2020 — 2023</span>
+          </div>
+          <div class="job-org">SIA Reitan Convenience Latvia (Narvesen Baltija)</div>
+          <p class="job-desc"><span data-lang="lv">Plānoju un vadīju pārdošanas un klientu servisa apmācības. Ieviesu tiešsaistes mācību platformu un veidoju mācību moduļus par uzņēmuma produktiem — pārtikas apriti, kvalitāti un produktu pagatavošanas video.</span><span data-lang="en">I planned and ran sales and customer-service training, implemented an online learning platform and built modules on the company's products — food handling, quality and product-preparation videos.</span></p>
+        </div>
+
+        <div class="job">
+          <div class="job-top">
+            <span class="job-title"><span data-lang="lv">Piedāvājumu apmācību speciāliste</span><span data-lang="en">Offer Training Specialist</span></span>
+            <span class="job-period">2017 — 2019</span>
+          </div>
+          <div class="job-org">SIA Latvijas Mobilais Telefons</div>
+          <p class="job-desc"><span data-lang="lv">Organizēju un vadīju pārdošanas un produktu apmācības, veidojot viegli uztveramus materiālus sadarbībā ar produktu un projektu vadītājiem.</span><span data-lang="en">I organised and delivered sales and product training, creating easy-to-grasp materials together with product and project managers.</span></p>
+        </div>
+      </div>
+
+      <div class="sect">
+        <div class="sect-h"><span data-lang="lv">Izglītība</span><span data-lang="en">Education</span></div>
+        <div class="edu-row">
+          <div>
+            <div class="e-main"><span data-lang="lv">Izglītības zinātņu maģistrs (M.Ed.) pedagoģijā</span><span data-lang="en">Master of Education (M.Ed.) in Pedagogy</span></div>
+            <div class="e-org"><span data-lang="lv">Liepājas Pedagoģijas akadēmija</span><span data-lang="en">Liepāja Academy of Pedagogy</span></div>
+          </div>
+        </div>
+        <div class="edu-row">
+          <div>
+            <div class="e-main"><span data-lang="lv">Izglītības zinātņu bakalaurs (B.Ed.)</span><span data-lang="en">Bachelor of Education (B.Ed.)</span></div>
+            <div class="e-org"><span data-lang="lv">Rīgas Pedagoģijas un izglītības vadības augstskola</span><span data-lang="en">Riga Teacher Training &amp; Educational Management Academy</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sect">
+        <div class="sect-h"><span data-lang="lv">Kursi &amp; sertifikāti</span><span data-lang="en">Courses &amp; certifications</span></div>
+        <div class="cols2">
+          <div class="cert-line"><div class="cl-t"><span data-lang="lv">Dizaina domāšana un MI rīki radošajiem risinājumiem</span><span data-lang="en">Design Thinking &amp; AI Tools for Creative Solutions</span></div><div class="cl-m">2026 · Biznesa augstskola Turība</div></div>
+          <div class="cert-line"><div class="cl-t"><span data-lang="lv">Online mācību metodes</span><span data-lang="en">E-learning methods</span></div><div class="cl-m">2025 · Jeļena Horoškina</div></div>
+          <div class="cert-line"><div class="cl-t"><span data-lang="lv">Projektu vadība</span><span data-lang="en">Project Management</span></div><div class="cl-m">2024 · Udemy</div></div>
+          <div class="cert-line"><div class="cl-t"><span data-lang="lv">Klientu apkalpošanas izcilība</span><span data-lang="en">Customer service excellence</span></div><div class="cl-m">2024 · open.lv</div></div>
+          <div class="cert-line"><div class="cl-t"><span data-lang="lv">MI rīki produktivitātei</span><span data-lang="en">AI tools for productivity</span></div><div class="cl-m">2024 · Training Lab</div></div>
+          <div class="cert-line"><div class="cl-t">Moodle 3.9</div><div class="cl-m">2022 · Udemy</div></div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+<script>
+  const body=document.body;
+  function setLang(l){body.classList.remove('lang-lv','lang-en');body.classList.add('lang-'+l);document.documentElement.lang=l;try{localStorage.setItem('vd_lang',l);}catch(e){}}
+  document.querySelectorAll('.lang-toggle button').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.set)));
+  let saved='lv';try{saved=localStorage.getItem('vd_lang')||'lv';}catch(e){}
+  setLang(saved);
+</script>
+</body>
+</html>
